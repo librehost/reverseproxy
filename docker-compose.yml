@@ -20,8 +20,8 @@ services:
          - reverseproxy
          - traefik
     labels:
-      - "librehost.container.form.id=${COMPOSE_PROJECT_NAME:?err}"
-      - "librehost.container.form.name=${CONTAINER_FORM_NAME:?err}"
+      - "librehost.container.form.id=${COMPOSE_PROJECT_NAME:?err}_traefik"
+      - "librehost.container.form.name=${COMPOSE_PROJECT_NAME:?err}"
       - "librehost.container.form.email=${CONTAINER_FORM_EMAIL:?err}"
     #command: --logLevel=DEBUG
     healthcheck:

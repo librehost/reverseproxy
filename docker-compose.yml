@@ -21,6 +21,7 @@ services:
          - traefik
     labels:
       # https://docs.traefik.io/configuration/backends/docker/
+      - "librehost.app.id=reverseproxy"
       - "traefik.enable=true"
       - "traefik.docker.network=reverseproxy"
       - "traefik.backend=reverseproxy"

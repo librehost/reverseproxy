@@ -20,6 +20,7 @@ services:
          - reverseproxy
          - traefik
     labels:
+      - "librehost.stack.id=reverseproxy" # do not change
       - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}" # do not change
       - "librehost.container.name=${COMPOSE_PROJECT_NAME:?err}_traefik" # do not change
       - "librehost.form.email=${LIBREHOST_FORM_EMAIL:?err}"

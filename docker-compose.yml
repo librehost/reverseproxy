@@ -20,15 +20,7 @@ services:
          - reverseproxy
          - traefik
     labels:
-      # https://docs.traefik.io/configuration/backends/docker/
       - "librehost.app.id=reverseproxy"
-      - "traefik.enable=true"
-      - "traefik.docker.network=reverseproxy"
-      - "traefik.backend=reverseproxy"
-      - "traefik.reverseproxy.port=8080"
-      - "traefik.reverseproxy.frontend.rule=Host:${TRAEFIK_DOMAIN:?err}"
-      # https://docs.docker.com/compose/compose-file/#variable-substitution
-      - "traefik.reverseproxy.frontend.auth.basic=${TRAEFIK_AUTH:?err}"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

@@ -1,0 +1,45 @@
+version: '3.5'
+services:
+
+  traefik:
+    build:
+      context: ./
+      dockerfile: Dockerfile.traefik
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    expose:
+      - "8080"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - reverseproxy:/mytraefik
+    networks:
+      reverseproxy:
+        aliases:
+         - reverseproxy
+         - traefik
+    labels:
+      # https://docs.traefik.io/configuration/backends/docker/
+      - "traefik.enable=true"
+      - "traefik.docker.network=reverseproxy"
+      - "traefik.backend=reverseproxy"
+      - "traefik.reverseproxy.port=8080"
+      - "traefik.reverseproxy.frontend.rule=Host:${TRAEFIK_DOMAIN:?err}"
+      # https://docs.docker.com/compose/compose-file/#variable-substitution
+      - "traefik.reverseproxy.frontend.auth.basic=${TRAEFIK_AUTH:?err}"
+    #command: --logLevel=DEBUG
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+      #start_period: 5s
+
+volumes:
+  reverseproxy:
+
+networks:
+  reverseproxy:
+      name: reverseproxy # named networks will not get removed on container update/removal
+  

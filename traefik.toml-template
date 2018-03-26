@@ -1,4 +1,5 @@
 #debug = true
+#test
 checkNewVersion = true
 logLevel = "ERROR"
 defaultEntryPoints = ["https","http"]

@@ -27,6 +27,7 @@ services:
       - "librehost.stack.domain=${LIBREHOST_STACK_DOMAIN:?err}"
       - "librehost.stack.env=${LIBREHOST_STACK_ENV:?err}"
       - "librehost.stack.container=${COMPOSE_PROJECT_NAME:?err}_traefik"
+      - "librehost.stack.container-number=1"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

@@ -5,6 +5,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.traefik
+      args:
+        VERSION: ${LIBREHOST_STACK_SERVICE_1_VERSION:-latest}
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"

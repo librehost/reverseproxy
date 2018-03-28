@@ -24,10 +24,11 @@ services:
       # librehost.stack.id must be equal the name of the repository
       - "librehost.stack.id=reverseproxy"
       - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}"
-      - "librehost.stack.domain=${LIBREHOST_STACK_DOMAIN:?err}"
-      - "librehost.stack.env=${LIBREHOST_STACK_ENV:?err}"
-      - "librehost.stack.container=${COMPOSE_PROJECT_NAME:?err}_traefik"
-      - "librehost.stack.container-number=1"
+      - "librehost.stack.domains=${LIBREHOST_STACK_DOMAINS:?err}"
+      - "librehost.stack.json=${LIBREHOST_STACK_JSON:?err}"
+      - "librehost.stack.service.number=1"
+      - "librehost.stack.service.name=${COMPOSE_PROJECT_NAME:?err}_traefik"
+      - "librehost.stack.service.version=${LIBREHOST_STACK_SERVICE_1_VERSION:-latest}"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

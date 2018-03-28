@@ -20,10 +20,13 @@ services:
          - reverseproxy
          - traefik
     labels:
-      - "librehost.stack.id=reverseproxy" # do not change
-      - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}" # do not change
-      - "librehost.container.name=${COMPOSE_PROJECT_NAME:?err}_traefik" # do not change
-      - "librehost.form.email=${LIBREHOST_FORM_EMAIL:?err}"
+      # librehost labels must be present on all services
+      # librehost.stack.id must be equal the name of the repository
+      - "librehost.stack.id=nginx_node"
+      - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}"
+      - "librehost.stack.domain=${LIBREHOST_STACK_DOMAIN:?err}"
+      - "librehost.stack.env=${LIBREHOST_STACK_ENV:?err}"
+      - "librehost.stack.container=${COMPOSE_PROJECT_NAME:?err}_nginx"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

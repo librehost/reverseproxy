@@ -29,7 +29,7 @@ services:
       - "librehost.stack.domains=${LIBREHOST_STACK_DOMAINS:?err}"
       - "librehost.stack.json=${LIBREHOST_STACK_JSON:?err}"
       - "librehost.stack.service.number=1"
-      - "librehost.stack.service.name=${COMPOSE_PROJECT_NAME:?err}_traefik"
+      - "librehost.stack.service.name=${COMPOSE_PROJECT_NAME:?err}"
       - "librehost.stack.service.version=${LIBREHOST_STACK_SERVICE_1_VERSION:-latest}"
     #command: --logLevel=DEBUG
     healthcheck:

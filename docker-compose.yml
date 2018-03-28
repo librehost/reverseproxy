@@ -22,11 +22,11 @@ services:
     labels:
       # librehost labels must be present on all services
       # librehost.stack.id must be equal the name of the repository
-      - "librehost.stack.id=nginx_node"
+      - "librehost.stack.id=reverseproxy"
       - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}"
       - "librehost.stack.domain=${LIBREHOST_STACK_DOMAIN:?err}"
       - "librehost.stack.env=${LIBREHOST_STACK_ENV:?err}"
-      - "librehost.stack.container=${COMPOSE_PROJECT_NAME:?err}_nginx"
+      - "librehost.stack.container=${COMPOSE_PROJECT_NAME:?err}_traefik"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

@@ -23,7 +23,7 @@ defaultEntryPoints = ["https","http"]
   exposedbydefault = false
 
 [acme]
-  email = "${LIBREHOST_STACK_EMAIL}"
+  email = "${SHIPY_STACK_EMAIL}"
   storage = "acme.json"
   entryPoint = "https"
   OnHostRule = true

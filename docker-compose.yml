@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: Dockerfile.traefik
       args:
-        VERSION: ${LIBREHOST_STACK_SERVICE_1_VERSION:-alpine}
+        VERSION: ${SHIPY_STACK_SERVICE_1_VERSION:-alpine}
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
@@ -24,13 +24,13 @@ services:
     labels:
       # librehost labels must be present on all services
       # librehost.stack.id must be equal the name of the repository
-      - "librehost.stack.id=reverseproxy"
-      - "librehost.stack.name=${COMPOSE_PROJECT_NAME:?err}"
-      - "librehost.stack.domains=${LIBREHOST_STACK_DOMAINS:?err}"
-      - "librehost.stack.json=${LIBREHOST_STACK_JSON:?err}"
-      - "librehost.stack.service.number=1"
-      - "librehost.stack.service.name=${COMPOSE_PROJECT_NAME:?err}"
-      - "librehost.stack.service.version=${LIBREHOST_STACK_SERVICE_1_VERSION:-latest}"
+      - "shipy.stack.id=reverseproxy"
+      - "shipy.stack.name=${COMPOSE_PROJECT_NAME:?err}"
+      - "shipy.stack.domains=${SHIPY_STACK_DOMAINS:?err}"
+      - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
+      - "shipy.stack.service.number=1"
+      - "shipy.stack.service.name=${COMPOSE_PROJECT_NAME:?err}"
+      - "shipy.stack.service.version=${SHIPY_STACK_SERVICE_1_VERSION:-latest}"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

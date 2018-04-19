@@ -23,14 +23,14 @@ services:
          - reverseproxy
          - traefik
     labels:
-      # librehost labels must be present on all services/volumes/networks
-      # librehost.stack.id must be equal the name of the repository
+      # shipy labels must be present on all services
+      # shipy.stack.id must be equal the name of the repository
       - "shipy.stack.id=reverseproxy"
       - "shipy.stack.name=${COMPOSE_PROJECT_NAME:?err}"
       - "shipy.stack.domains=${SHIPY_STACK_DOMAINS:?err}"
       - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
       - "shipy.stack.service.number=1"
-      - "shipy.stack.service.name=${COMPOSE_PROJECT_NAME:?err}_reverseproxy"
+      - "shipy.stack.service.name=${COMPOSE_PROJECT_NAME:?err}_traefik"
       - "shipy.stack.service.version=${SHIPY_STACK_SERVICE_1_VERSION:-latest}"
     #command: --logLevel=DEBUG
     healthcheck:
@@ -42,27 +42,9 @@ services:
 
 volumes:
   reverseproxy:
-    labels:
-      # librehost labels must be present on all services/volumes/networks
-      # librehost.stack.id must be equal the name of the repository
-      - "shipy.stack.id=reverseproxy"
-      - "shipy.stack.name=${COMPOSE_PROJECT_NAME:?err}"
-      - "shipy.stack.domains=${SHIPY_STACK_DOMAINS:?err}"
-      - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
-      - "shipy.stack.volume.number=1"
-      - "shipy.stack.volume.name=${COMPOSE_PROJECT_NAME:?err}_reverseproxy"
 
 networks:
   reverseproxy:
       name: reverseproxy # named networks will not get removed on container update/removal
-      labels:
-      # librehost labels must be present on all services/volumes/networks
-      # librehost.stack.id must be equal the name of the repository
-      - "shipy.stack.id=reverseproxy"
-      - "shipy.stack.name=${COMPOSE_PROJECT_NAME:?err}"
-      - "shipy.stack.domains=${SHIPY_STACK_DOMAINS:?err}"
-      - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
-      - "shipy.stack.network.number=1"
-      - "shipy.stack.network.name=${COMPOSE_PROJECT_NAME:?err}_reverseproxy"
       
   

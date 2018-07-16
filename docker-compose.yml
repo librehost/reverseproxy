@@ -25,7 +25,7 @@ services:
     labels:
       # shipy labels must be present on all services
       # shipy.stack.id must be equal the name of the repository
-      - "shipy.stack.id=reverseproxy"
+      - "shipy.stack.id=${COMPOSE_PROJECT_NAME:?err}"
       - "shipy.stack.name=${COMPOSE_PROJECT_NAME:?err}"
       - "shipy.stack.domains=${SHIPY_STACK_DOMAINS:?err}"
       - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"

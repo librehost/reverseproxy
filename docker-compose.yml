@@ -3,7 +3,7 @@ version: '2.4' # Cant use 3+ because it does not support resource-limits without
 services:
 
   traefik:
-    mem_limit: 1000000000
+    mem_limit: ${SHIPY_STACK_SERVICE_1_MEMORY_LIMIT:--1}
     build:
       context: ./
       dockerfile: Dockerfile.traefik
@@ -32,7 +32,7 @@ services:
       - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
       - "shipy.stack.service.number=1"
       - "shipy.stack.service.name=${COMPOSE_PROJECT_NAME:?err}_traefik"
-      - "shipy.stack.service.version=${SHIPY_STACK_SERVICE_1_VERSION:-latest}"
+      - "shipy.stack.service.version=${SHIPY_STACK_SERVICE_1_VERSION:-alpine}"
     #command: --logLevel=DEBUG
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]

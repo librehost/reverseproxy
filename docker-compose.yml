@@ -3,6 +3,7 @@ version: '2.4' # Cant use 3+ because it does not support resource-limits without
 services:
 
   traefik:
+    mem_limit: 1000000000
     build:
       context: ./
       dockerfile: Dockerfile.traefik

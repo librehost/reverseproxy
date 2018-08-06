@@ -46,6 +46,7 @@ volumes:
 
 networks:
   reverseproxy:
-      name: reverseproxy # named networks will not get removed on container update/removal
+    external: true
+    name: reverseproxy # named networks will not get removed on container update/removal
       
   

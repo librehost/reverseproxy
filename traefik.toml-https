@@ -1,7 +1,4 @@
-#debug = true
-#test
-checkNewVersion = true
-logLevel = "ERROR"
+logLevel = "WARN"
 defaultEntryPoints = ["https","http"]
 
 [entryPoints]

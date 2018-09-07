@@ -21,7 +21,6 @@ services:
     networks:
       reverseproxy:
         aliases:
-         aliases:
          # alias with pattern PROJECTNAME_SERVICENAME must be present on all networks
          - ${COMPOSE_PROJECT_NAME:?err}_traefik
          # reverseproxy is allowed only once per server so alias can be hardcoded too

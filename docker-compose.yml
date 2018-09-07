@@ -1,12 +1,11 @@
 version: '2.4' # Cant use 3+ because it does not support resource-limits without swarm-mode: https://github.com/docker/compose/issues/4513
 
 services:
-
-  traefik:
+  reverseproxy:
     mem_limit: ${SHIPY_STACK_SERVICE_1_MEMORY_LIMIT:-1000000000}
     build:
       context: ./
-      dockerfile: Dockerfile.traefik
+      dockerfile: Dockerfile.reverseproxy
       args:
         VERSION: ${SHIPY_STACK_SERVICE_1_VERSION:-alpine}
     ports:
@@ -22,7 +21,7 @@ services:
       reverseproxy:
         aliases:
          # alias with pattern PROJECTNAME_SERVICENAME must be present on all networks
-         - ${COMPOSE_PROJECT_NAME:?err}_traefik
+         - ${COMPOSE_PROJECT_NAME:?err}_reverseproxy
          # reverseproxy is allowed only once per server so alias can be hardcoded too
          - reverseproxy
          - traefik
@@ -36,7 +35,7 @@ services:
       - "shipy.stack.updated=${SHIPY_STACK_UPDATED:?err}"
       - "shipy.stack.json=${SHIPY_STACK_JSON:?err}"
       - "shipy.stack.service.number=1"
-      - "shipy.stack.service.name=traefik"
+      - "shipy.stack.service.name=reverseproxy"
       - "shipy.stack.service.version=${SHIPY_STACK_SERVICE_1_VERSION:-alpine}"
     #command: --logLevel=DEBUG
     healthcheck:
